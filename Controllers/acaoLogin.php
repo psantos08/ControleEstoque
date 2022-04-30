@@ -73,6 +73,7 @@ if(!empty($_POST['acao'])){
 		    $arrayRetorno = array(
 		        'nome' => $sqlRetorno['nome'],
                 'email' => $sqlRetorno['email'],
+                'idLogin' => $sqlRetorno['id'],
                 'dataCriacao' => $sqlRetorno['dataCriacao'],
             );
 			$tipo = 'success';
@@ -101,6 +102,11 @@ if(!empty($_POST['acao'])){
 		break;
 
 	}
+        case 'sair':
+            {
+                session_destroy();
+                $tipo = 'success';
+            }
 			
       
 

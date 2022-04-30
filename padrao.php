@@ -9,7 +9,7 @@
 //} else {
 //  echo 'Não tem sessão';
 //}
-echo 'opa';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +65,8 @@ echo 'opa';
         <a href="#" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="./login.php" id="btnSair" class="nav-link">Sair</a>
+<!--        <a href="./login.php" id="btnSair" class="nav-link">Sair</a>-->
+        <a href="#" id="btnSair" onclick="sair()" class="nav-link">Sair</a>
       </li>
 
      
@@ -254,12 +255,30 @@ echo 'opa';
 <script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
+<!-- Plugin de tabelas -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
 
 <!-- Script para página -->
 <script>
-  //$("#btnSair").click(function(){
-  //  <?php //session_destroy(); ?>
-  //})
+  function sair(){
+      var dados = new FormData();
+      dados.append('acao', 'sair');
+      $.ajax({
+          method: 'POST',
+          url: 'Controllers/acaoLogin.php',
+          data: dados,
+          contentType: false,
+          processData: false,
+          success: function (response){
+              if (response['tipo'] = 'success'){
+                  window.location.href = './login.php';
+              }
+          },
+          error: function (response){
+              console.log('Não foi para ação');
+          }
+      })
+  }
 </script>
 </body>
 
